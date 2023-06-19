@@ -8,14 +8,12 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Temperature Unit")) {
                     Toggle(isOn: $isCelsius) {
                         Text("Celsius")
                     }
                     Toggle(isOn: $isDarkMode) {
                         Text("Dark Mode")
                     }
-                }
             }
             .navigationTitle("Settings")
         }
