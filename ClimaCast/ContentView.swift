@@ -5,6 +5,8 @@
 //  Created by Saee Saadat on 6/15/23.
 //
 
+// url: https://api.weatherapi.com/v1/search.json?key=c582e3515da44ce1a90113153220803
+
 import SwiftUI
 
 struct ContentView: View {

@@ -15,9 +15,9 @@ struct CardView: View {
                 .shadow(radius: 5)
             
             HStack {
-                Text("London")
+                Text(location.location)
                 Spacer()
-                Text("15 C")
+                Text(location.temperature)
                 Text("rainy")
             }
 
