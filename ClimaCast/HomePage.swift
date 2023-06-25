@@ -2,16 +2,35 @@ import SwiftUI
 
 struct HomeView: View {
 
-    let favoriteLocations = [
-        Location(id:"london-city-of-london-greater-london-united-kingdom", location: "London", temperature: "15")
-        Location(id: "tehran-tehran-iran", location: "Tehran", temperature: "30")
+    let favoriteUrls: [String] = [
+        "london-city-of-london-greater-london-united-kingdom",
+        "tehran-tehran-iran"
     ]
+
+    @State private let favoriteLocations: [CurrentLocation] = [
+        CurrentLocation(name: "London", temp_c: "10"),
+        CurrentLocation(name: "Tehran", temp_c: "20")
+    ]
+
+    func fetchWeather() async {
+        do {
+            let result = try await WeatherService().getCurrent(locations: favoriteUrls)
+            print(result)
+        } catch {
+            print(error)
+        }
+    }
+
     var body: some View {
         NavigationView {
-            List(favoriteLocations) { location in
+            List {
+                ForEach(favoriteLocations, id: \.self) { location in
                 NavigationLink(destination: Text(location.id)) {
                     CardView(location: location)
                 }
+            }onDelete { indexSet in
+                favoriteUrls.remove(atOffsets: indexSet)
+                favoriteLocations.remove(atOffsets: indexSet)
             }
         }
         .navigationTitle("home")

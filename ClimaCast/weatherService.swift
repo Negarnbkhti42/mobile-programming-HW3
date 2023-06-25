@@ -8,30 +8,31 @@ struct WeatherService {
     let baseUrl = "https://api.weatherapi.com/v1/"
     let key = "c582e3515da44ce1a90113153220803"
 
-    func getCurrent(locations: [String]) async throws -> [LocationItem] {
+    func getCurrent(locations: [String]) async throws -> [CurrentLocation] {
 
         let result: [LocationItem] = []
 
         for location in locations {
 
-            guard let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(location)") else {
-                print("wrong url")
+            URLSession.shared.dataTask(with: URL(string: "\(baseUrl)current.json?key=\(key)&q=\(location)")!) { data, response, error in
                 
-            }
+                if let error = error {
+                    print(error)
+                    return
+                }
 
-            guard let (data, response) = try? await URLSession.shared.data(from: url) else{
-                print("no response")
-            }   
+                if let data = data {
+                    do {
+                        let decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
+                        result.append(CurrentLocation(name: decoded.name, temp_c: "\(decoded.temp_c)"))
+                    } catch {
+                        print(error)
+                    }
+                }
+            }.resume()
 
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{
-                print("response not ok")
-            }
-
-            guard let result = try? JSONDecoder().decode(CurrentLocation.self, from: data) else {
-                print("response not decoded")
-            }
-
-            return result
         }
+            return result
     }
+
 }
