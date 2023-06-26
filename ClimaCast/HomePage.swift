@@ -25,7 +25,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(favoriteLocations, id: \.self) { location in
+                ForEach($favoriteLocations, id: \.self) { location in
                 NavigationLink(destination: Text(location.id)) {
                     CardView(location: location)
                 }
