@@ -42,5 +42,8 @@ struct HomeView: View {
                 Label("Add", systemImage: "plus")
             }
         }
+        .task {
+            await fetchWeather()
+        }
     }
 }
