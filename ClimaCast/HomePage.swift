@@ -1,5 +1,5 @@
 import SwiftUI
-import CurrentLocation
+
 
 struct HomeView: View {
 
@@ -8,9 +8,9 @@ struct HomeView: View {
         "tehran-tehran-iran"
     ]
 
-    @State private let favoriteLocations: [CurrentLocation] = [
-        CurrentLocation(name: "London", temp_c: "10"),
-        CurrentLocation(name: "Tehran", temp_c: "20")
+    @State private var favoriteLocations: [CurrentLocation] = [
+        CurrentLocation(name: "London", temp_c: 10),
+        CurrentLocation(name: "Tehran", temp_c: 20)
     ]
 
     func fetchWeather() async {

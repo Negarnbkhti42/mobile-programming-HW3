@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0022C3002A49B231001C4344 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0022C2FF2A49B231001C4344 /* WeatherService.swift */; };
 		00606C042A3B6B86001A2884 /* ClimaCastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00606C032A3B6B86001A2884 /* ClimaCastApp.swift */; };
 		00606C062A3B6B86001A2884 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00606C052A3B6B86001A2884 /* ContentView.swift */; };
 		00606C082A3B6B88001A2884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00606C072A3B6B88001A2884 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0022C2FF2A49B231001C4344 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		00606C002A3B6B86001A2884 /* ClimaCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClimaCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00606C032A3B6B86001A2884 /* ClimaCastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimaCastApp.swift; sourceTree = "<group>"; };
 		00606C052A3B6B86001A2884 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		00606C022A3B6B86001A2884 /* ClimaCast */ = {
 			isa = PBXGroup;
 			children = (
+				0022C2FF2A49B231001C4344 /* WeatherService.swift */,
 				0083EA882A4048AD00CCC0FE /* HomePage.swift */,
 				0083EA8A2A404A5400CCC0FE /* CardView.swift */,
 				0083EA862A40487400CCC0FE /* SettingsPage.swift */,
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0022C3002A49B231001C4344 /* WeatherService.swift in Sources */,
 				0083EA892A4048AD00CCC0FE /* HomePage.swift in Sources */,
 				00606C062A3B6B86001A2884 /* ContentView.swift in Sources */,
 				00606C042A3B6B86001A2884 /* ClimaCastApp.swift in Sources */,
