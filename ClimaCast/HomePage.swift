@@ -1,4 +1,5 @@
 import SwiftUI
+import CurrentLocation
 
 struct HomeView: View {
 
@@ -28,7 +29,7 @@ struct HomeView: View {
                 NavigationLink(destination: Text(location.id)) {
                     CardView(location: location)
                 }
-            }onDelete { indexSet in
+            }.onDelete { indexSet in
                 favoriteUrls.remove(atOffsets: indexSet)
                 favoriteLocations.remove(atOffsets: indexSet)
             }

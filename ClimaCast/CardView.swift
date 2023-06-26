@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CardView: View {
+
+    @Binding var location: CurrentLocation
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15, style: .continuous)
