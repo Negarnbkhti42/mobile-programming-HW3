@@ -1,3 +1,5 @@
+import Foundation
+
 struct CurrentLocation: Decodable {
     let name: String
     let temp_c: Double
