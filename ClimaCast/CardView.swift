@@ -20,7 +20,7 @@ struct CardView: View {
             HStack {
                 Text(location.name)
                 Spacer()
-                Text(location.temp_c)
+                Text("\(location.temp_c)")
                 Text("rainy")
             }
 
@@ -31,6 +31,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(CurrentLocation(name: "London", temp_c: 10))
     }
 }

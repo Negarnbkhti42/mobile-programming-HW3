@@ -10,7 +10,7 @@ struct WeatherService {
 
     func getCurrent(locations: [String]) async throws -> [CurrentLocation] {
 
-        let result: [LocationItem] = []
+        let result: [CurrentLocation] = []
 
         for location in locations {
 
