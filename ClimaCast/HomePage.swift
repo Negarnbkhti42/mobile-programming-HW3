@@ -8,6 +8,10 @@ struct HomeView: View {
         "tehran-tehran-iran"
     ]
 
+    let SortOptions = ["Name", "Temperature"]
+
+    @State private var sortOption = "Name"
+
     @State private var favoriteLocations: [CurrentLocation] = [
         CurrentLocation(name: "London", temp_c: 10),
         CurrentLocation(name: "Tehran", temp_c: 20)
@@ -24,27 +28,38 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach($favoriteLocations, id: \.self) { location in
-                NavigationLink(destination: Text(location.id)) {
-                    CardView(location: location)
+            VStack{
+                Picker("Select a sorting option", selection: $sortOption) {
+                    ForEach(sortOptions, id: \.self) {
+                        Text($0)
+                    }
                 }
-            }.onDelete { indexSet in
-                favoriteUrls.remove(atOffsets: indexSet)
-                favoriteLocations.remove(atOffsets: indexSet)
-            }
-        }
-        .navigationTitle("home")
-        .toolbar {
-            Button {
+                .pickerStyle(.menu)
 
-            } label: {
-                Label("Add", systemImage: "plus")
+                List {
+                ForEach($favoriteLocations.sorted(by: {$sortOption == "Name" ? $0.name < $1.name : $0.temp_c < $1.temp_c}), id: \.self) 
+                    { location in
+                    NavigationLink(destination: Text(location.id)) {
+                        CardView(location: location)
+                    }
+                }.onDelete { indexSet in
+                    favoriteUrls.remove(atOffsets: indexSet)
+                    favoriteLocations.remove(atOffsets: indexSet)
+                }  
+                }
+                
+                .navigationTitle("home")
+                .toolbar {
+                    Button {
+
+                    } label: {
+                        Label("Add", systemImage: "plus")
+                    }
+                }
+                .task {
+                    await fetchWeather()
+                }
             }
-        }
-        .task {
-            await fetchWeather()
         }
     }
-}
 }
