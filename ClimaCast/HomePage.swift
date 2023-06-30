@@ -21,6 +21,11 @@ struct HomeView: View {
         do {
             let result = try await WeatherService().getCurrent(locations: favoriteUrls)
             print(result)
+            favoriteLocations.removeAll()
+
+            for location in result {
+                favoriteLocations.append(locations)
+            }
         } catch {
             print(error)
         }
