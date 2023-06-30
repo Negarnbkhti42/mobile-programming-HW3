@@ -18,6 +18,10 @@ struct CurrentParams: Decodable {
     var temp_c: Double
 }
 
+struct SearchLocation: Decodable {
+    var url: String
+}
+
 struct WeatherService {
 
     let baseUrl = "https://api.weatherapi.com/v1/"
@@ -31,7 +35,7 @@ struct WeatherService {
 
             if let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(location)") {
                     do {
-                    let (data, _) = try await URLSession.shared.data(from: url)
+                        let (data, _) = try await URLSession.shared.data(from: url)
                         let decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
                     result.append(decoded)
                     } catch {
@@ -43,7 +47,19 @@ struct WeatherService {
             return result
     }
 
-    func getSearchResult(location: String) async throws -> String {
-
+    func getSearchResult(searchValue: String) async throws -> String? {
+        if let url = URL(string: "\(baseUrl)search.json?key=\(key)&q=\(searchValue)") {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: url)
+                let decode = try JSONDecoder().decode([SearchLocation.self], from: data)
+                if decode.count > 0 {
+                    return decode[0].url
+                } else {
+                    return nil
+                }
+            } catch  {
+                print(error)
+            }
+        }
     }
 }
