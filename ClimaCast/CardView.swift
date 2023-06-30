@@ -5,32 +5,21 @@
 //  Created by Saee Saadat on 6/19/23.
 //
 
-import SwiftUI
+//import SwiftUI
+//
+//struct CardView: View {
+//
+//    @Binding var favoriteLocations: CurrentLocation
+//
+//    var body: some View {
+//
+//    }
+//}
+//
+//struct CardView_Previews: PreviewProvider {
+//    @State static var location = CurrentLocation(name: "London", temp_c: 10)
+//    static var previews: some View {
+//        CardView(favoriteLocations: $location)
+//    }
+//}
 
-struct CardView: View {
-
-    @Binding var location: CurrentLocation
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(.white)
-                .shadow(radius: 5)
-            
-            HStack {
-                Text(location.name)
-                Spacer()
-                Text("\(location.temp_c)")
-                Text("rainy")
-            }
-
-        }
-        .frame(width: .infinity, height: 100)
-    }
-}
-
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(CurrentLocation(name: "London", temp_c: 10))
-    }
-}
