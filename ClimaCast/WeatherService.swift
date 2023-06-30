@@ -10,7 +10,7 @@ struct WeatherService {
     let baseUrl = "https://api.weatherapi.com/v1/"
     let key = "c582e3515da44ce1a90113153220803"
 
-    func getCurrent(locations: [CurrentLocation]) async throws -> [CurrentLocation] {
+    func getCurrent(locations: [String]) async throws -> [CurrentLocation] {
 
         let result: [CurrentLocation] = []
 
@@ -36,5 +36,4 @@ struct WeatherService {
         }
             return result
     }
-
 }
