@@ -1,13 +1,21 @@
 import Foundation
 
 struct CurrentLocation: Decodable ,Identifiable {
-    var name: String
-    var temp_c: Double
+    var location: LocationParams
+    var current: CurrentParams 
     var id =  UUID()
     enum CodingKeys: String, CodingKey {
-            case name , temp_c
+            case location , current
         }
     
+}
+
+struct LocationParams: Decodable {
+    var name: String
+}
+
+struct CurrentParams: Decodable {
+    var temp_c: Double
 }
 
 struct WeatherService {
@@ -22,18 +30,20 @@ struct WeatherService {
         for location in locations {
 
             if let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(location)") {
-                do {
+                    do {
                     let (data, _) = try await URLSession.shared.data(from: url)
-                    let decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
+                        let decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
                     result.append(decoded)
-                } catch {
-                    print(error)
+                    } catch {
+                        print(error)
+                    }
                 }
-            }
         }
 
-        return result
+            return result
+    }
+
+    func getSearchResult(location: String) async throws -> String {
+
     }
 }
-
-

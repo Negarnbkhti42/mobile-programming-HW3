@@ -13,8 +13,8 @@ struct HomeView: View {
     @State private var sortOption = "Name"
 
     @State private var favoriteLocations: [CurrentLocation] = [
-        CurrentLocation(name: "London", temp_c: 30),
-        CurrentLocation(name: "Tehran", temp_c: 20)
+        CurrentLocation(location: LocationParams(name: "London"), current: CurrentParams(temp_c: 30)),
+        CurrentLocation(location: LocationParams(name: "Tehran"), current:  CurrentParams(temp_c: 20))
     ]
 
     func fetchWeather() async {
@@ -42,18 +42,18 @@ struct HomeView: View {
                 .pickerStyle(.menu)
 
                 List {
-                    ForEach(favoriteLocations.sorted(by: {sortOption == "Name" ? $0.name < $1.name : $0.temp_c < $1.temp_c}), id: \.id)
+                    ForEach(favoriteLocations.sorted(by: {sortOption == "Name" ? $0.location.name < $1.location.name : $0.current.temp_c < $1.current.temp_c}), id: \.id)
                     { location in
-                    NavigationLink(destination: Text(location.name)) {
+                    NavigationLink(destination: Text(location.location.name)) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 15, style: .continuous)
                                 .fill(.white)
                                 .shadow(radius: 5)
                             
                             HStack {
-                                Text(location.name)
+                                Text(location.location.name)
                                 Spacer()
-                                Text("\(Double(round(1000 * location.temp_c) / 1000))")
+                                Text("\(Double(round(1000 * location.current.temp_c) / 1000))")
                                 Text("rainy")
                             }
 
