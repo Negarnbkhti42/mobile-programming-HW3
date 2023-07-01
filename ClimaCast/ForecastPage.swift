@@ -49,7 +49,7 @@ struct ForecastPage: View {
     
     func fetchForecast() async {
         do {
-            let result = try await WeatherService().getForecast(location: "london-city-of-london-greater-london-united-kingdom")
+            let result = try await WeatherService().getForecast(location: location)
             print(result)
             foreCast = result
         } catch {
