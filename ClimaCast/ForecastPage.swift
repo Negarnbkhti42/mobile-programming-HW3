@@ -60,41 +60,43 @@ struct ForecastPage: View {
     var body: some View {
         NavigationView {
             
-            if foreCast != nil {
+            Group {
+                if foreCast != nil {
                 
                 
-                Text("\(foreCast!.location.name)")
-                Text("\(foreCast!.location.localtime)")
-                AsyncImage(url: URL(string: "\(foreCast!.forecast.forecastday[0].day.condition.icon)")!) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
+                    Text("\(foreCast!.location.name)")
+                    Text("\(foreCast!.location.localtime)")
+                    AsyncImage(url: URL(string: "\(foreCast!.forecast.forecastday[0].day.condition.icon)")!) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    Text("\(foreCast!.forecast.forecastday[0].day.condition.text)")
+                    List(foreCast!.forecast.forecastday) { day in
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.white)
+                                .shadow(radius: 5)
+                            HStack {
+                                Text("\(day.date)")
+                                Text("\(day.day.avgtemp_c)")
+                                Text("\(day.day.condition.icon)")
+                                Text("\(day.day.condition.text)")
+                            }
+                        }
+                        
+                    }
+                } else {
                     ProgressView()
                 }
-                Text("\(foreCast!.forecast.forecastday[0].day.condition.text)")
-                List(foreCast!.forecast.forecastday) { day in
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.white)
-                            .shadow(radius: 5)
-                        HStack {
-                            Text("\(day.date)")
-                            Text("\(day.day.avgtemp_c)")
-                            Text("\(day.day.condition.icon)")
-                            Text("\(day.day.condition.text)")
-                        }
-                    }
-                    
-                }
-            } else {
-                ProgressView()
             }
-            
-                .navigationTitle("Forecast")
+            .navigationTitle("Forecast")
                 .task {
                     await fetchForecast()
                 }
+            
         }
     }
 }
