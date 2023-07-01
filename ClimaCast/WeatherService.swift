@@ -5,6 +5,7 @@ struct CurrentLocation: Decodable ,Identifiable {
     var current: CurrentParams 
    
     var id =  UUID()
+    var url: String = ""
     enum CodingKeys: String, CodingKey {
             case location , current
         }
@@ -69,6 +70,7 @@ struct WeatherService {
                     do {
                         let (data, _) = try await URLSession.shared.data(from: url)
                         let decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
+                        decoded.url = location
                     result.append(decoded)
                     } catch {
                         print(error)
