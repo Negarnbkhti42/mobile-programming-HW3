@@ -2,54 +2,56 @@ import SwiftUI
 
 struct ForecastPage: View {
      var location  : String
-    @State var foreCast: ForecastResponse = ForecastResponse(
-        location: LocationParams(
-            name: "London",
-            localtime: "2023-07-01"
-        ),
-        forecast: ForecastParams(
-            forecastday: [
-                Forecast(
-                    date: "2023-07-01",
-                    day: Day(
-                        avgtemp_c: 10,
-                        avgtemp_f: 50,
-                        condition: conditionParams(
-                            text: "Sunny",
-                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-                        )
-                    )
-                ),
-                Forecast(
-                    date: "2023-07-02",
-                    day: Day(
-                        avgtemp_c: 10,
-                        avgtemp_f: 50,
-                        condition: conditionParams(
-                            text: "Sunny",
-                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-                        )
-                    )
-                ),
-                Forecast(
-                    date: "2023-07-03",
-                    day: Day(
-                        avgtemp_c: 10,
-                        avgtemp_f: 50,
-                        condition: conditionParams(
-                            text: "Sunny",
-                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-                        )
-                    )
-                ),
-            ]
-        )
-    )
+    @State var foreCast : ForecastResponse? = nil
+//    @State var foreCast: ForecastResponse = ForecastResponse(
+//        location: LocationParams(
+//            name: "London",
+//            localtime: "2023-07-01"
+//        ),
+//        forecast: ForecastParams(
+//            forecastday: [
+//                Forecast(
+//                    date: "2023-07-01",
+//                    day: Day(
+//                        avgtemp_c: 10,
+//                        avgtemp_f: 50,
+//                        condition: conditionParams(
+//                            text: "Sunny",
+//                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
+//                        )
+//                    )
+//                ),
+//                Forecast(
+//                    date: "2023-07-02",
+//                    day: Day(
+//                        avgtemp_c: 10,
+//                        avgtemp_f: 50,
+//                        condition: conditionParams(
+//                            text: "Sunny",
+//                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
+//                        )
+//                    )
+//                ),
+//                Forecast(
+//                    date: "2023-07-03",
+//                    day: Day(
+//                        avgtemp_c: 10,
+//                        avgtemp_f: 50,
+//                        condition: conditionParams(
+//                            text: "Sunny",
+//                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
+//                        )
+//                    )
+//                ),
+//            ]
+//        )
+//    )
 
     func fetchForecast() async {
         do {
             let result = try await WeatherService().getForecast(location: "london-city-of-london-greater-london-united-kingdom")
             print(result)
+            foreCast = result
         } catch {
             print(error)
         }
