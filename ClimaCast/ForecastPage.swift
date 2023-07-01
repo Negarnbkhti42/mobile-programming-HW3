@@ -66,7 +66,7 @@ struct ForecastPage: View {
                 
                     Text("\(foreCast!.location.name)")
                     Text("\(foreCast!.location.localtime)")
-                    AsyncImage(url: URL(string: "\(foreCast!.forecast.forecastday[0].day.condition.icon)")!) { image in
+                    AsyncImage(url: URL(string: "\(foreCast!.forecast.forecastday[0].day.condition.icon[2...])")!) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -82,7 +82,13 @@ struct ForecastPage: View {
                             HStack {
                                 Text("\(day.date)")
                                 Text("\(day.day.avgtemp_c)")
-                                Text("\(day.day.condition.icon)")
+                                AsyncImage(url: URL(string: "\(day.day.condition.icon[2...])")!) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } placeholder: {
+                        ProgressView()
+                    }
                                 Text("\(day.day.condition.text)")
                             }
                         }
