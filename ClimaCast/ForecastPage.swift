@@ -59,6 +59,10 @@ struct ForecastPage: View {
 
     var body: some View {
         NavigationView {
+
+            if foreCast != nil {
+                
+            
             Text("\(foreCast.location.name)")
         Text("\(foreCast.location.localtime)")
             AsyncImage(url: URL(string: "\(foreCast.forecast.forecastday[0].day.condition.icon)")!) { image in
@@ -83,6 +87,9 @@ struct ForecastPage: View {
             }
 
         }
+            } else {
+                ProgressView()
+            }
 
         .navigationTitle("Forecast")
         .task {
