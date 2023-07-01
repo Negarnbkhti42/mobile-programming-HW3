@@ -16,6 +16,7 @@
 		0083EA892A4048AD00CCC0FE /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083EA882A4048AD00CCC0FE /* HomePage.swift */; };
 		0083EA8B2A404A5400CCC0FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083EA8A2A404A5400CCC0FE /* CardView.swift */; };
 		069A3D9B2A500041000CBADD /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A3D9A2A500041000CBADD /* SearchPage.swift */; };
+		069A3D9F2A5016DA000CBADD /* ForecastPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A3D9E2A5016DA000CBADD /* ForecastPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		0083EA882A4048AD00CCC0FE /* HomePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		0083EA8A2A404A5400CCC0FE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		069A3D9A2A500041000CBADD /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
+		069A3D9E2A5016DA000CBADD /* ForecastPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				0083EA862A40487400CCC0FE /* SettingsPage.swift */,
 				00606C032A3B6B86001A2884 /* ClimaCastApp.swift */,
 				00606C052A3B6B86001A2884 /* ContentView.swift */,
+				069A3D9E2A5016DA000CBADD /* ForecastPage.swift */,
 				00606C072A3B6B88001A2884 /* Assets.xcassets */,
 				00606C092A3B6B88001A2884 /* Preview Content */,
 				069A3D9A2A500041000CBADD /* SearchPage.swift */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0022C3002A49B231001C4344 /* WeatherService.swift in Sources */,
+				069A3D9F2A5016DA000CBADD /* ForecastPage.swift in Sources */,
 				0083EA892A4048AD00CCC0FE /* HomePage.swift in Sources */,
 				00606C062A3B6B86001A2884 /* ContentView.swift in Sources */,
 				00606C042A3B6B86001A2884 /* ClimaCastApp.swift in Sources */,
