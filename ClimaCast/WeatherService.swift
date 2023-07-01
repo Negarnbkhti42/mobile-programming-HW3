@@ -103,12 +103,12 @@ struct WeatherService {
         return nil;
     }
 
-    func getForecast(location: String) async throws -> [Forecast] {
+    func getForecast(location: String) async throws -> ForecastResponse {
         if let url = URL(string: "\(baseUrl)forecast.json?key=\(key)&q=\(location)&days=3") {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let decode = try JSONDecoder().decode(ForecastResponse.self, from: data)
-                return decode.forecast.forecastday
+                return decode
             } catch {
                 print(error)
             }
