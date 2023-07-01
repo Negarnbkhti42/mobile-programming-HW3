@@ -5,49 +5,6 @@ struct ForecastPage: View {
     @AppStorage("isCelsius") private var isCelcius = false
     var location  : String
     @State var foreCast : ForecastResponse? = nil
-    //    @State var foreCast: ForecastResponse = ForecastResponse(
-    //        location: LocationParams(
-    //            name: "London",
-    //            localtime: "2023-07-01"
-    //        ),
-    //        forecast: ForecastParams(
-    //            forecastday: [
-    //                Forecast(
-    //                    date: "2023-07-01",
-    //                    day: Day(
-    //                        avgtemp_c: 10,
-    //                        avgtemp_f: 50,
-    //                        condition: conditionParams(
-    //                            text: "Sunny",
-    //                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-    //                        )
-    //                    )
-    //                ),
-    //                Forecast(
-    //                    date: "2023-07-02",
-    //                    day: Day(
-    //                        avgtemp_c: 10,
-    //                        avgtemp_f: 50,
-    //                        condition: conditionParams(
-    //                            text: "Sunny",
-    //                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-    //                        )
-    //                    )
-    //                ),
-    //                Forecast(
-    //                    date: "2023-07-03",
-    //                    day: Day(
-    //                        avgtemp_c: 10,
-    //                        avgtemp_f: 50,
-    //                        condition: conditionParams(
-    //                            text: "Sunny",
-    //                            icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-    //                        )
-    //                    )
-    //                ),
-    //            ]
-    //        )
-    //    )
     
     func fetchForecast() async {
         do {
@@ -68,7 +25,12 @@ struct ForecastPage: View {
                 
                     Text("\(foreCast!.location.name)")
                     Text("\(foreCast!.location.localtime)")
-                    AsyncImage(url: URL(string: "https:\(foreCast!.forecast.forecastday[0].day.condition.icon)")!) 
+                    AsyncImage(url: URL(string: "https:\(foreCast!.forecast.forecastday[0].day.condition.icon)")!){image in
+                            image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                        } placeholder: {
+                            ProgressView()
+                                }
                     Text("\(foreCast!.forecast.forecastday[0].day.condition.text)")
                     List(foreCast!.forecast.forecastday) { day in
 
@@ -76,7 +38,12 @@ struct ForecastPage: View {
                                 Text("\(day.date)")
                                 Text("\(isCelcius ? day.day.avgtemp_c: day.day.avgtemp_f)")
 
-                                AsyncImage(url: URL(string: "https:\(day.day.condition.icon)")!)
+                                AsyncImage(url: URL(string: "https:\(day.day.condition.icon)")!) {image in
+                                    image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                } placeholder: {
+                                    ProgressView()
+                                }
 
                                 Text("\(day.day.condition.text)")
                             }
