@@ -46,7 +46,6 @@ struct HomeView: View {
                     { location in
                         NavigationLink(destination: ForecastPage(location: location.url))
                         {
-                        ZStack {
                             RoundedRectangle(cornerRadius: 15, style: .continuous)
                                 .fill(.white)
                                 .shadow(radius: 5)
@@ -57,8 +56,6 @@ struct HomeView: View {
                                 Text("\(Double(round(1000 * location.current.temp_c) / 1000))")
                             }
 
-                        }
-                        .frame(width: .infinity, height: 100)
                     }
                 }.onDelete { indexSet in
                     favoriteUrls.remove(atOffsets: indexSet)
