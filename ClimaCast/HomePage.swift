@@ -17,6 +17,8 @@ struct HomeView: View {
         CurrentLocation(location: LocationParams(name: "Tehran"), current:  CurrentParams(temp_c: 20))
     ]
 
+    
+
     func fetchWeather() async {
         do {
             let result = try await WeatherService().getCurrent(locations: favoriteUrls)
@@ -24,12 +26,13 @@ struct HomeView: View {
             favoriteLocations.removeAll()
 
             for location in result {
-                favoriteLocations.append(locations)
+                favoriteLocations.append(location)
             }
         } catch {
             print(error)
         }
     }
+   
 
     var body: some View {
         NavigationView {
@@ -68,8 +71,8 @@ struct HomeView: View {
                 
                 .navigationTitle("home")
                 .toolbar {
-                    Button {
-
+                    NavigationLink{
+                           SearchPage(items: $favoriteUrls)
                     } label: {
                         Label("Add", systemImage: "plus")
                     }
@@ -79,6 +82,7 @@ struct HomeView: View {
                 }
             }
         }
+   
     }
 }
 

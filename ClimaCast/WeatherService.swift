@@ -51,15 +51,16 @@ struct WeatherService {
         if let url = URL(string: "\(baseUrl)search.json?key=\(key)&q=\(searchValue)") {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
-                let decode = try JSONDecoder().decode([SearchLocation.self], from: data)
+                let decode = try JSONDecoder().decode([SearchLocation].self, from: data)
                 if decode.count > 0 {
                     return decode[0].url
-                } else {
-                    return nil
                 }
             } catch  {
                 print(error)
             }
         }
+        return nil;
     }
+    
 }
+
