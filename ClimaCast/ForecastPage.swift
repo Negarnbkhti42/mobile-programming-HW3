@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ForecastPage: View {
-
+    @Binding var location  : String
     @State var foreCast: ForecastResponse = ForecastResponse(
         location: LocationParams(
             name: "London",
@@ -59,14 +59,14 @@ struct ForecastPage: View {
         NavigationView {
             Text("\(foreCast.location.name)")
         Text("\(foreCast.location.localtime)")
-        AsyncImage(url: URL(string: "\(foreCast.forecast.forecastday[0].condition.icon)")!) { image in
+            AsyncImage(url: URL(string: "\(foreCast.forecast.forecastday[0].day.condition.icon)")!) { image in
             image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         } placeholder: {
             ProgressView()
         }
-        Text("\(foreCast.forecast.forecastday[0].condition.text)")
+            Text("\(foreCast.forecast.forecastday[0].day.condition.text)")
         List(foreCast.forecast.forecastday) { day in
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
@@ -91,7 +91,8 @@ struct ForecastPage: View {
 }
 
 struct ForecastPage_Previews: PreviewProvider {
+  @State static var url=""
     static var previews: some View {
-        ForecastPage()
+        ForecastPage(location:$url)
     }
 }
