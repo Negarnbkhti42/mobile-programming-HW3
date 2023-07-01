@@ -11,6 +11,7 @@ import SwiftUI
 struct ClimaCastApp: App {
 
     @AppStorage("isDarkMode") private var isDarkMode = false
+    
 
     var body: some Scene {
         WindowGroup {

@@ -1,6 +1,8 @@
 import SwiftUI
 
+
 struct ForecastPage: View {
+    @AppStorage("isCelsius") private var isCelcius = false
     var location  : String
     @State var foreCast : ForecastResponse? = nil
     //    @State var foreCast: ForecastResponse = ForecastResponse(
@@ -66,27 +68,15 @@ struct ForecastPage: View {
                 
                     Text("\(foreCast!.location.name)")
                     Text("\(foreCast!.location.localtime)")
-                    AsyncImage(url: URL(string: "https:\(foreCast!.forecast.forecastday[0].day.condition.icon)")!) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } placeholder: {
-                        ProgressView()
-                    }
+                    AsyncImage(url: URL(string: "https:\(foreCast!.forecast.forecastday[0].day.condition.icon)")!) 
                     Text("\(foreCast!.forecast.forecastday[0].day.condition.text)")
                     List(foreCast!.forecast.forecastday) { day in
 
                             HStack {
                                 Text("\(day.date)")
-                                Text("\(day.day.avgtemp_c)")
+                                Text("\(isCelcius ? day.day.avgtemp_c: day.day.avgtemp_f)")
 
-                                AsyncImage(url: URL(string: "https:\(day.day.condition.icon)")!) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                } placeholder: {
-                                    ProgressView()
-                                }
+                                AsyncImage(url: URL(string: "https:\(day.day.condition.icon)")!)
 
                                 Text("\(day.day.condition.text)")
                             }

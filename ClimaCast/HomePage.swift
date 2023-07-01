@@ -2,7 +2,7 @@ import SwiftUI
 
 
 struct HomeView: View {
-
+    @AppStorage("isCelsius") private var isCelcius = false
     @State var favoriteUrls: [String] = [
         "london-city-of-london-greater-london-united-kingdom",
         "tehran-tehran-iran"
@@ -49,7 +49,7 @@ struct HomeView: View {
                             HStack {
                                 Text(location.location.name)
                                 Spacer()
-                                Text("\(Double(round(1000 * location.current.temp_c) / 1000))")
+                                Text("\(Double(round(1000 * (isCelcius ? location.current.temp_c: location.current.temp_f)) / 1000))")
                             }
 
                     }
