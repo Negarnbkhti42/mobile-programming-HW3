@@ -46,7 +46,7 @@ struct SearchPage: View {
                 
             }
         }
-        .navigationTitle(Text("Add new Favorite Location"))
+        .navigationTitle(Text("New Favorite Location"))
         .toolbar{
             Button{
                 IsSearching = true

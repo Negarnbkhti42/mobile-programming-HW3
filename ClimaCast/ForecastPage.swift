@@ -36,7 +36,7 @@ struct ForecastPage: View {
 
                             HStack {
                                 Text("\(day.date)")
-                                Text("\(isCelcius ? day.day.avgtemp_c: day.day.avgtemp_f)")
+                                Text("\(isCelcius ? day.day.avgtemp_c: day.day.avgtemp_f,specifier: "%.0f")")
 
                                 AsyncImage(url: URL(string: "https:\(day.day.condition.icon)")!) {image in
                                     image.resizable()

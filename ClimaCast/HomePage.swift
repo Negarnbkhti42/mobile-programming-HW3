@@ -49,7 +49,7 @@ struct HomeView: View {
                             HStack {
                                 Text(location.location.name)
                                 Spacer()
-                                Text("\(Double(round(1000 * (isCelcius ? location.current.temp_c: location.current.temp_f)) / 1000))")
+                                Text("\(isCelcius ? location.current.temp_c: location.current.temp_f , specifier: "%.0f")")
                             }
 
                     }
@@ -59,7 +59,7 @@ struct HomeView: View {
                 }
                 }
                 
-                .navigationTitle("home")
+                .navigationTitle("Home")
                 .toolbar {
                     NavigationLink{
                            SearchPage(items: $favoriteUrls)
