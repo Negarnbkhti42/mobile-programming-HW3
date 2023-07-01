@@ -40,9 +40,14 @@ struct ForecastParams: Decodable {
     var forecastday: [Forecast]
 }
 
-struct Forecast: Decodable {
+struct Forecast: Decodable , Identifiable {
     var date: String
     var day: Day
+    var id = UUID()
+    enum CodingKeys: String, CodingKey {
+        case date , day
+            
+        }
 }
 
 struct Day: Decodable {
@@ -69,7 +74,7 @@ struct WeatherService {
             if let url = URL(string: "\(baseUrl)current.json?key=\(key)&q=\(location)") {
                     do {
                         let (data, _) = try await URLSession.shared.data(from: url)
-                        let decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
+                        var  decoded = try JSONDecoder().decode(CurrentLocation.self, from: data)
                         decoded.url = location
                     result.append(decoded)
                     } catch {

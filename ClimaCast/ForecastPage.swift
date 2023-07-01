@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ForecastPage {
+struct ForecastPage: View {
 
     @State var foreCast: ForecastResponse = ForecastResponse(
         location: LocationParams(
