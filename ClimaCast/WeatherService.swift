@@ -3,19 +3,49 @@ import Foundation
 struct CurrentLocation: Decodable ,Identifiable {
     var location: LocationParams
     var current: CurrentParams 
+    var wind_kph: Double
+    var cloud: Double
     var id =  UUID()
     enum CodingKeys: String, CodingKey {
-            case location , current
+            case location , current, wind_kph, cloud
         }
     
 }
 
 struct LocationParams: Decodable {
     var name: String
+    var localtime: String
+    var condition: conditionParams
 }
 
 struct CurrentParams: Decodable {
     var temp_c: Double
+    var temp_f: Double
+}
+
+struct conditionParams: Decodable {
+    var text: String
+    var icon: String
+}
+
+struct ForecastResponse: Decodable {
+    var location: LocationParams
+    var forecast: ForecastParams
+}
+
+struct ForecastParams: Decodable {
+    var forecastday: [Forecast]
+}
+
+struct Forecast: Decodable {
+    var date: String
+    var day: Day
+}
+
+struct Day: Decodable {
+    var avgtemp_c: Double
+    var avgtemp_f: Double
+    var condition: conditionParams
 }
 
 struct SearchLocation: Decodable {
@@ -61,5 +91,18 @@ struct WeatherService {
                 print(error)
             }
         }
+    }
+
+    func getForecast(location: String) async throws -> [Forecast] {
+        if let url = URL(string: "\(baseUrl)forecast.json?key=\(key)&q=\(location)&days=3") {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: url)
+                let decode = try JSONDecoder().decode(ForecastResponse.self, from: data)
+                return decode.forecast.forecastday
+            } catch {
+                print(error)
+            }
+        }
+        return []
     }
 }
