@@ -44,7 +44,7 @@ struct HomeView: View {
                 List {
                     ForEach(favoriteLocations.sorted(by: {sortOption == "Name" ? $0.location.name < $1.location.name : $0.current.temp_c < $1.current.temp_c}), id: \.id)
                     { location in
-                        NavigationLink(destination: ForecastPage(location: $favoriteUrls.first(where: {$0==location.url})!))
+                        NavigationLink(destination: ForecastPage(location: location.url))
                         {
                         ZStack {
                             RoundedRectangle(cornerRadius: 15, style: .continuous)
@@ -55,7 +55,6 @@ struct HomeView: View {
                                 Text(location.location.name)
                                 Spacer()
                                 Text("\(Double(round(1000 * location.current.temp_c) / 1000))")
-                                Text("rainy")
                             }
 
                         }

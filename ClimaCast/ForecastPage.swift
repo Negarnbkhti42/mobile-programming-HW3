@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ForecastPage: View {
-    @Binding var location  : String
+     var location  : String
     @State var foreCast: ForecastResponse = ForecastResponse(
         location: LocationParams(
             name: "London",
@@ -93,6 +93,6 @@ struct ForecastPage: View {
 struct ForecastPage_Previews: PreviewProvider {
   @State static var url=""
     static var previews: some View {
-        ForecastPage(location:$url)
+        ForecastPage(location:url)
     }
 }
