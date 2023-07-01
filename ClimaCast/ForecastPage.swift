@@ -58,7 +58,7 @@ struct ForecastPage: View {
     }
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             
             Group {
                 if foreCast != nil {
@@ -97,7 +97,7 @@ struct ForecastPage: View {
                     await fetchForecast()
                 }
             
-        }
+//        }
     }
 }
 
