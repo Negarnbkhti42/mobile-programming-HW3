@@ -46,10 +46,6 @@ struct HomeView: View {
                     { location in
                         NavigationLink(destination: ForecastPage(location: location.url))
                         {
-                            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                .fill(.white)
-                                .shadow(radius: 5)
-                            
                             HStack {
                                 Text(location.location.name)
                                 Spacer()
