@@ -5,11 +5,7 @@ struct ForecastPage {
     @State var foreCast: ForecastResponse = ForecastResponse(
         location: LocationParams(
             name: "London",
-            localtime: "2023-07-01",
-            condition: conditionParams(
-                text: "Sunny",
-                icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png"
-            )
+            localtime: "2023-07-01"
         ),
         forecast: ForecastParams(
             forecastday: [
@@ -63,14 +59,14 @@ struct ForecastPage {
         NavigationView {
             Text("\(foreCast.location.name)")
         Text("\(foreCast.location.localtime)")
-        AsyncImage(url: URL(string: "\(foreCast.location.condition.icon)")!) { image in
+        AsyncImage(url: URL(string: "\(foreCast.forecast.forecastday[0].condition.icon)")!) { image in
             image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         } placeholder: {
             ProgressView()
         }
-        Text("\(foreCast.location.condition.text)")
+        Text("\(foreCast.forecast.forecastday[0].condition.text)")
         List(foreCast.forecast.forecastday) { day in
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
