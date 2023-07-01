@@ -12,10 +12,7 @@ struct HomeView: View {
 
     @State private var sortOption = "Name"
 
-    @State private var favoriteLocations: [CurrentLocation] = [
-        CurrentLocation(location: LocationParams(name: "London"), current: CurrentParams(temp_c: 30)),
-        CurrentLocation(location: LocationParams(name: "Tehran"), current:  CurrentParams(temp_c: 20))
-    ]
+    @State private var favoriteLocations: [CurrentLocation] = []
 
     
 

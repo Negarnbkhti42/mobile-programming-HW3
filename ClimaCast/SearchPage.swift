@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct SearchPage: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
 
     @Binding var items: [String]
     @State var SearchVlue = "";
-    @state var presentAlert = false;
+    @State var presentAlert = false;
+    @State var IsSearching = false
+    @State var GotResult = false
 
     func search() async {
         do {
-            let result = try await WeatherService().search(query: SearchVlue)
-            print(result)
+            let result = try await WeatherService().getSearchResult(searchValue: SearchVlue)
+            print(result ?? "")
+            IsSearching = false
             if result != nil {
+            
                 items.append(result!)
-                presentationMode.wrappedValue.dismiss()
+                
+               GotResult = true
             } else {
                 presentAlert = true
             }
@@ -38,15 +43,24 @@ struct SearchPage: View {
 
             .alert("no result found!", isPresented: $presentAlert){
                 Button("OK", role: .cancel){}
+                
             }
         }
         .navigationTitle(Text("Add new Favorite Location"))
         .toolbar{
             Button{
-                await search()
+                IsSearching = true
+                Task{
+                    await search()
+                    if GotResult{
+                        dismiss()
+                    }
+                }
             }label:{
                 Text("Add")
+                
             }
+            .disabled(IsSearching)
         }
     }
     

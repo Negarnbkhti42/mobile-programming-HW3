@@ -3,11 +3,10 @@ import Foundation
 struct CurrentLocation: Decodable ,Identifiable {
     var location: LocationParams
     var current: CurrentParams 
-    var wind_kph: Double
-    var cloud: Double
+   
     var id =  UUID()
     enum CodingKeys: String, CodingKey {
-            case location , current, wind_kph, cloud
+            case location , current
         }
     
 }
@@ -15,12 +14,15 @@ struct CurrentLocation: Decodable ,Identifiable {
 struct LocationParams: Decodable {
     var name: String
     var localtime: String
-    var condition: conditionParams
+    
 }
 
 struct CurrentParams: Decodable {
     var temp_c: Double
     var temp_f: Double
+    var wind_kph: Double
+    var cloud: Double
+    var condition: conditionParams
 }
 
 struct conditionParams: Decodable {
@@ -78,7 +80,9 @@ struct WeatherService {
     }
 
     func getSearchResult(searchValue: String) async throws -> String? {
-        if let url = URL(string: "\(baseUrl)search.json?key=\(key)&q=\(searchValue)") {
+        var a = "\(baseUrl)search.json?key=\(key)&q=\(searchValue)"
+        print(a)
+        if let url = URL(string: a) {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let decode = try JSONDecoder().decode([SearchLocation].self, from: data)
