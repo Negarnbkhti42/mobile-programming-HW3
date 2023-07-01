@@ -1,4 +1,3 @@
-<img width="479" alt="Screenshot 2023-07-01 at 16 04 41" src="https://github.com/Negarnbkhti42/mobile-programming-HW3/assets/59180989/6607ce8f-faf8-4da7-aebc-b66a592baccf">﻿# mobile-programming-HW3
  ## Weather application
  
 ### Application has two tabs : Home  and Setting.
@@ -27,13 +26,16 @@
 
 <img width="478" alt="Screenshot 2023-07-01 at 16 04 23" src="https://github.com/Negarnbkhti42/mobile-programming-HW3/assets/59180989/ac97a341-893a-45e3-97f6-4dcfc2d540a2">
 
+
 <img width="479" alt="Screenshot 2023-07-01 at 16 04 41" src="https://github.com/Negarnbkhti42/mobile-programming-HW3/assets/59180989/180e6cfe-69d4-4650-a641-53252769636a">
 
 
 
 <img width="510" alt="Screenshot 2023-07-01 at 16 01 38" src="https://github.com/Negarnbkhti42/mobile-programming-HW3/assets/59180989/b20cbfa9-6cdb-47a9-ac7d-b0c6bb3b74f9">
 
+
 <img width="476" alt="Screenshot 2023-07-01 at 16 05 49" src="https://github.com/Negarnbkhti42/mobile-programming-HW3/assets/59180989/4b3374ed-6813-42be-9fd9-584441177f81">
+
 
 <img width="480" alt="Screenshot 2023-07-01 at 16 06 09" src="https://github.com/Negarnbkhti42/mobile-programming-HW3/assets/59180989/bf99f6a6-0c57-472e-8d7c-ab8ab40bbc62">
 
